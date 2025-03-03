@@ -51,11 +51,15 @@ namespace Wk7Ex1_BookDataTable_LINQuery
             // use Linq to select books that cost more than $12
             List<Book> books12 = allBooks.Where(x => x.Price > 12).ToList();
 
+
+
             // Tell user we are outputting books that cost more than 12 dollars
             Console.WriteLine("Books which cost over $12.00:");
+
             // for each book in the list books12, output the title, author, genre, and price (all data)
-            books12.ForEach(book => { Console.WriteLine($"{book.Title}, {book.Author}, {book.Genre}, {book.Price}"); });
-            
+            books12.ForEach(book => { Console.WriteLine($" - {book.Title}, {book.Author}, {book.Genre}, {book.Price}"); });
+            //linebreaks for readability
+            Console.WriteLine(); Console.WriteLine();
 
 
 
@@ -65,37 +69,51 @@ namespace Wk7Ex1_BookDataTable_LINQuery
             // Tell user we are outputting books in ascending order by price
             Console.WriteLine("All books from lowest to highest price:");
             // for each book in the list bookPriceAsc, output the title, author, genre, and price (all data)
-            bookPriceAsc.ForEach(book => { Console.WriteLine($"{book.Title}, {book.Author}, {book.Genre}, {book.Price}"); });
-            //linebreak for readability
-            Console.WriteLine();
+            bookPriceAsc.ForEach(book => { Console.WriteLine($" - {book.Title}, {book.Author}, {book.Genre}, {book.Price}"); });
+            //linebreaks for readability
+            Console.WriteLine(); Console.WriteLine();
 
 
-
-            /* Commented out because these aren't working. Not sure how to fix and it is 7pm the night before they are due.
 
             // Use Linq to order books by price (ascending)
-            List<Book> booksByGenre = allBooks.GroupBy(book => book.Genre).ToList();
-            /* var booksByGenre = from b in allBooks
-                                      group b by b.Genre into g
-                                      select new
-                                      {
-                                          Key = g.Key,
-                                          Books = g.OrderBy(x => x.Genre)
-                                      };
-
+            var booksByGenre = allBooks.GroupBy(b => b.Genre);
+            
 
             // Tell user we are outputting books in ascending order by price
             Console.WriteLine("All books sorted by genre:");
-            // for each book in the list bookPriceAsc, output the title, author, genre, and price (all data)
-            booksByGenre.ForEach(book => { Console.WriteLine($"{book.Title}, {book.Author}, {book.Genre}, {book.Price}"); });
-            //linebreak for readability
-            Console.WriteLine();
+            // for each book in the group in booksByGenre, 
+            foreach (var group in booksByGenre)
+            {
+                // write the group key, aka the genre name
+                Console.WriteLine($"Genre: {group.Key}");
+                // for each value (book) in the key (genre)
+                foreach (var book in group)
+                {
+                    //output the title and author
+                    Console.WriteLine($" - {book.Title} by {book.Author}");
+                }
+            }
+            //linebreaks for readability
+            Console.WriteLine(); Console.WriteLine();
+
+
 
 
             // use linq to get only titles and authors of books
-            List<Book> bookTitleAndAuthor = allBooks.Select(book => book.Title).ToList();
+            var bookTitleAndAuthor = allBooks.Select(book => new { book.Title, book.Author });
 
-            */
+
+            // Tell user we are outputting books with only title and author info
+            Console.WriteLine("All books and authors:");
+            //for each book in the bookTitleAndAuthor only list
+            foreach (var book in bookTitleAndAuthor)
+            {
+                // output the title and author in a bulletted list
+                Console.WriteLine($" - {book.Title} by {book.Author}");
+            }
+            //linebreaks for readability and to pause the screen
+            Console.ReadLine();
+
         }
     }
 }

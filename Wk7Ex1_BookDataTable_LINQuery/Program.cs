@@ -45,6 +45,8 @@ namespace Wk7Ex1_BookDataTable_LINQuery
             allBooks.Add(book3); // add book3 to the list
             allBooks.Add(book4); // add book4 to the list
             allBooks.Add(book5); // add book5 to the list
+            allBooks.Add(book6); // add book6 to the list
+            allBooks.Add(book7); // add book7 to the list
 
             // use Linq to select books that cost more than $12
             List<Book> books12 = allBooks.Where(x => x.Price > 12).ToList();
@@ -69,6 +71,8 @@ namespace Wk7Ex1_BookDataTable_LINQuery
 
 
 
+            /* Commented out because these aren't working. Not sure how to fix and it is 7pm the night before they are due.
+
             // Use Linq to order books by price (ascending)
             List<Book> booksByGenre = allBooks.GroupBy(book => book.Genre).ToList();
             /* var booksByGenre = from b in allBooks
@@ -77,7 +81,7 @@ namespace Wk7Ex1_BookDataTable_LINQuery
                                       {
                                           Key = g.Key,
                                           Books = g.OrderBy(x => x.Genre)
-                                      }; */
+                                      };
 
 
             // Tell user we are outputting books in ascending order by price
@@ -90,6 +94,8 @@ namespace Wk7Ex1_BookDataTable_LINQuery
 
             // use linq to get only titles and authors of books
             List<Book> bookTitleAndAuthor = allBooks.Select(book => book.Title).ToList();
+
+            */
         }
     }
 }
